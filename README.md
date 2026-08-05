@@ -5,10 +5,6 @@
 ![Status](https://img.shields.io/badge/Status-Conclu%C3%ADdo-brightgreen?style=for-the-badge)
 ![DIO](https://img.shields.io/badge/DIO-Bootcamp-purple?style=for-the-badge)
 
-> Projeto desenvolvido como parte do bootcamp **TQI Fullstack Developer** na [DIO](https://www.dio.me), sob orientação do instrutor **Venilton FalvoJr**. O objetivo é explorar os padrões de projeto **Gang of Four (GoF)** na prática — primeiro implementando manualmente com Java puro, depois observando como o Spring Boot aplica os mesmos padrões de forma automática.
-
----
-
 ## Sobre o Projeto
 
 Este repositório está dividido em **duas partes complementares**. Elas implementam os mesmos três padrões de projeto — Singleton, Strategy e Facade — de formas completamente diferentes, permitindo uma comparação direta entre as abordagens.
