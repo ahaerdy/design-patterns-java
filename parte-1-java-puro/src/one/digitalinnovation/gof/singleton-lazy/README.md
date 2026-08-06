@@ -1,41 +1,63 @@
-# 🔍 Detalhamento Prático & Debugging: Singleton Lazy (Preguiçoso)
+# Laboratório de Debugging: Singleton Lazy
 
-Este documento apresenta a análise factual do fluxo de execução e a inspeção de memória da variação **Singleton Lazy**, realizada através do depurador (*debugger*) da IDE **IntelliJ IDEA**.
+Este documento apresenta a análise factual do fluxo de execução, alocação na Heap e inspeção de memória da variação **Singleton Lazy**, utilizando a classe `SingletonLazyDebug.java` localizada dentro do pacote `one.digitalinnovation.gof.singletonlazy`.
 
 ---
 
 ## 📌 1. Conceito do Padrão
-O **Singleton Lazy** (Preguiçoso) adia a criação do objeto até o exato momento em que ele é requisitado pela primeira vez através do método estático `getInstancia()`. 
 
-- **Vantagem:** Economia de recursos de memória/CPU na inicialização da aplicação.
-- **Característica:** Instanciação sob demanda (*lazy initialization*).
+O **Singleton Lazy** (Preguiçoso) adia a criação do objeto até o exato momento em que ele é requisitado pela primeira vez através do método estático `SingletonLazy.getInstancia()`.
+
+* **Pacote Base:** `one.digitalinnovation.gof.SingletonLazy`
+* **Pacote do Laboratório:** `one.digitalinnovation.gof.singletonlazy`
+* **Vantagem:** Economia de recursos de memória e processamento na inicialização da aplicação (*lazy initialization*).
 
 ---
 
-## 💻 2. Código-Fonte Analisado
+## 💻 2. Código-Fonte do Laboratório
 
-### `SingletonLazy.java`
+### `SingletonLazyDebug.java`
+
 ```java
-package one.digitalinnovation.gof;
+package one.digitalinnovation.gof.singletonlazy;
+
+import one.digitalinnovation.gof.SingletonLazy;
 
 /**
- * Singleton "Preguiçoso" (Lazy)
+ * Classe utilitária para execução e inspeção em modo Debug do padrão Singleton Lazy.
  * 
- * @author faldev / Arthur
+ * Sugestão de Debug no IntelliJ IDEA:
+ * 1. Insira um Breakpoint na primeira chamada de 'SingletonLazy.getInstancia()'.
+ * 2. Insira um Breakpoint na segunda chamada de 'SingletonLazy.getInstancia()'.
+ * 3. Execute via Debug (Shift + F9).
+ * 4. Observe o valor das referências de memória no painel "Variables".
+ * 
+ * @author Arthur
  */
-public class SingletonLazy {
+public class SingletonLazyDebug {
 
-    private static SingletonLazy instancia;
+    public static void main(String[] args) {
+        System.out.println("=== INÍCIO DO TESTE DE DEBUG: SINGLETON LAZY ===");
 
-    private SingletonLazy() {
-        super();
-    }
+        // [BREAKPOINT AQUI] Primeira chamada: Deve instanciar o objeto na memória Heap
+        System.out.println("\n1. Solicitando a primeira instância (lazy1)...");
+        SingletonLazy lazy1 = SingletonLazy.getInstancia();
+        System.out.println("   Endereço/Hash de lazy1: " + lazy1);
 
-    public static SingletonLazy getInstancia() {
-        if (instancia == null) {
-            instancia = new SingletonLazy();
+        // [BREAKPOINT AQUI] Segunda chamada: Deve reaproveitar a instância pré-existente
+        System.out.println("\n2. Solicitando a segunda instância (lazy2)...");
+        SingletonLazy lazy2 = SingletonLazy.getInstancia();
+        System.out.println("   Endereço/Hash de lazy2: " + lazy2);
+
+        // Validação de Identidade
+        System.out.println("\n3. Comparando referências de memória (lazy1 == lazy2):");
+        if (lazy1 == lazy2) {
+            System.out.println("   [SUCESSO] Ambas as variáveis apontam para a MESMA instância!");
+        } else {
+            System.out.println("   [FALHA] Foram criadas instâncias diferentes!");
         }
-        return instancia;
+
+        System.out.println("\n=== FIM DO TESTE DE DEBUG ===");
     }
 }
 
@@ -47,10 +69,10 @@ public class SingletonLazy {
 
 ### Passo 1: Configuração dos Breakpoints
 
-Para acompanhar a criação do objeto e a verificação condicional, foram inseridos pontos de interrupção (*breakpoints*) nas linhas-chave:
+Para acompanhar a criação do objeto e a verificação condicional, insira pontos de interrupção (*breakpoints*):
 
-* No método `main` da classe `Test.java` (na atribuição de `lazy1`).
-* Dentro da classe `SingletonLazy.java`, na linha `if (instancia == null)`.
+* No arquivo `SingletonLazyDebug.java`: Nas chamadas de `SingletonLazy.getInstancia()`.
+* No arquivo `SingletonLazy.java`: Na linha `if (instancia == null)`.
 
 
 *Figura 1: Marcação dos pontos de interrupção nas linhas de controle de fluxo.*
@@ -59,7 +81,7 @@ Para acompanhar a criação do objeto e a verificação condicional, foram inser
 
 ### Passo 2: Primeira Chamada — `lazy1 = SingletonLazy.getInstancia()`
 
-Ao iniciar o programa em modo **Debug (Shift + F9)**, o controle avança para dentro de `getInstancia()`.
+Execute a classe `SingletonLazyDebug` em modo **Debug (Shift + F9)**. Use `Step Into (F7)` para entrar no método da classe base.
 
 
 *Figura 2: Inspeção do painel Variables. O atributo estático `instancia` possui valor inicial `null`.*
@@ -70,60 +92,48 @@ Ao iniciar o programa em modo **Debug (Shift + F9)**, o controle avança para de
 
 ---
 
-### Passo 3: Atribuição e Retorno da Primeira Referência
+### Passo 3: Atribuição e Retorno de `lazy1`
 
-Ao avançar o código (`Step Over - F8`), a variável local `lazy1` recebe o ponteiro do objeto recém-criado.
+Ao prosseguir o código (`Step Over - F8`), a variável local `lazy1` recebe o ponteiro do objeto recém-criado.
 
 
-*Figura 3: Variável `lazy1` apontando para o objeto de ID `@452`.*
+*Figura 3: Variável `lazy1` apontando para a instância `@452`.*
 
 ---
 
 ### Passo 4: Segunda Chamada — `lazy2 = SingletonLazy.getInstancia()`
 
-Na linha seguinte do teste, é solicitada a instância novamente para a variável `lazy2`.
+Na chamada seguinte, a execução entra novamente em `getInstancia()`.
 
 
 *Figura 4: Avaliação do `if (instancia == null)`. Como `instancia` já contém `@452`, a condição é `false`.*
 
 1. A condição `instancia == null` falha (`false`).
-2. O bloco `new SingletonLazy()` **é ignorado**, evitando nova alocação de memória.
+2. A instrução `new SingletonLazy()` **é saltada**, evitando alocação duplicada na memória.
 3. O método retorna diretamente a referência pré-existente (`instancia`).
 
 ---
 
 ### Passo 5: Validação da Identidade de Memória
 
-Inspecionando as variáveis locais no encerramento da execução:
+Inspecionando o painel **Variables** ao término da execução:
 
 
-*Figura 5: Painel de Debug comprovando que `lazy1` e `lazy2` apontam para o mesmo identificador na Heap.*
+*Figura 5: Comparação dos hashes no IntelliJ comprovando que `lazy1` e `lazy2` são idênticos.*
 
 ---
 
 ## 📊 4. Matriz de Rastreamento de Estado
 
-| Etapa | Instrução Executada | Estado de `instancia` | Resultado Condicional | Referência Retornada |
+| Passo | Instrução em `SingletonLazyDebug` | Estado de `instancia` | Avaliação do `if` | Ponteiro de Memória |
 | --- | --- | --- | --- | --- |
-| **1** | `SingletonLazy.getInstancia()` (1ª vez) | `null` | `true` (Cria objeto) | `SingletonLazy@452` |
-| **2** | `System.out.println(lazy1)` | `SingletonLazy@452` | N/A | Prints `...SingletonLazy@452` |
+| **1** | `SingletonLazy.getInstancia()` (1ª vez) | `null` | `true` (Cria novo) | `SingletonLazy@452` |
+| **2** | Atribuição a `lazy1` | `SingletonLazy@452` | N/A | `lazy1 -> SingletonLazy@452` |
 | **3** | `SingletonLazy.getInstancia()` (2ª vez) | `SingletonLazy@452` | `false` (Reaproveita) | `SingletonLazy@452` |
-| **4** | `System.out.println(lazy2)` | `SingletonLazy@452` | N/A | Prints `...SingletonLazy@452` |
+| **4** | Atribuição a `lazy2` | `SingletonLazy@452` | N/A | `lazy2 -> SingletonLazy@452` |
 
 ---
 
 ## ⚠️ 5. Observação Técnica (Concorrência / Threads)
 
-Esta implementação básica **não é thread-safe**. Caso múltiplas *threads* acessem o método `getInstancia()` simultaneamente no estado inicial (`instancia == null`), há risco de condição de corrida (*race condition*), resultando na criação de múltiplos objetos. Para cenários *multithread*, utilize a variação **SingletonLazyHolder** ou controle por concorrência.
-
-```
-
----
-
-### Link para Inserir no README Principal
-
-Ao final da seção **"Variação 1: SingletonLazy — O Preguiçoso"** do seu `README.md` principal, adicione o seguinte trecho:
-
-```markdown
-> 🔍 **Aprofundamento Prático & Debugging:**
-> Para conferir o detalhamento da execução passo a passo no IntelliJ IDEA, com capturas de tela do painel de variáveis e análise de alocação de memória, acesse o [README de Debugging do Singleton Lazy](./src/one/digitalinnovation/gof/singleton-lazy/README.md).
+Esta implementação básica **não é thread-safe**. Caso múltiplas *threads* acessem `getInstancia()` simultaneamente durante o estado inicial (`instancia == null`), há risco de condição de corrida (*race condition*), podendo instanciar mais de um objeto na memória. Para cenários *multithread*, utilize a variação **SingletonLazyHolder** ou sincronização por travamento.
