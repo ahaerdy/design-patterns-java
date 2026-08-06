@@ -134,7 +134,7 @@ Na chamada seguinte, a execução entra novamente em `getInstancia()`.
 #### 🟩 O método retorna diretamente a referência pré-existente (`instancia`). Inspecionando o painel **Variables** ao término da execução mostra endereços iguais para as duas variáveis.
 
 <p align="center">
-  <img src="000-Midia_e_Anexos/2026-08-06-20-25-29.png" alt="" width="480">
+  <img src="000-Midia_e_Anexos/2026-08-06-20-25-29.png" alt="" width="100%">
 </p>
 
 
@@ -145,7 +145,7 @@ Inspecionando o painel **Variables** ao término da execução:
 #### 🟩 Comparação dos hashes no IntelliJ comprovando que `lazy1` e `lazy2` são idênticos.
 
 <p align="center">
-  <img src="000-Midia_e_Anexos/2026-08-06-20-28-43.png" alt="" width="480">
+  <img src="000-Midia_e_Anexos/2026-08-06-20-28-43.png" alt="" width="100%">
 </p>
 
 ## 📊 4. Matriz de Rastreamento de Estado
