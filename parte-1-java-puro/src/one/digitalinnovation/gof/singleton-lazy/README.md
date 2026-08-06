@@ -89,19 +89,19 @@ Execute a classe `SingletonLazyDebug` em modo **Debug (Shift + F9)**. Use `Step 
   <img src="000-Midia_e_Anexos/2026-08-06-19-53-34.png" alt="" width="100%">
 </p>
 
-#### O bloco entra na linha `instancia = new SingletonLazy();`:
+#### O bloco entra na linha `instancia = new SingletonLazy();`
 
 <p align="center">
   <img src="000-Midia_e_Anexos/2026-08-06-19-55-51.png" alt="" width="100%">
 </p>
 
-#### O construtor privado SingletonLazy() é executado. A pilha de chamadas no painel Debug exibe o método <init>:16 sendo executado após a validação condicional instancia == null na linha 22, alocando a nova referência (@1075) na memória Heap:
+#### O construtor privado SingletonLazy() é executado. A pilha de chamadas no painel Debug exibe o método <init>:16 sendo executado após a validação condicional instancia == null na linha 22, alocando a nova referência (@1075) na memória Heap
 
 <p align="center">
   <img src="000-Midia_e_Anexos/2026-08-06-19-57-19.png" alt="" width="100%">
 </p>
 
-#### Conclusão do fluxo de inicialização no método getInstancia(). A instrução return instancia; na linha 24 é alcançada e o painel Variables confirma que a variável estática instancia agora referencia o objeto recém-criado (@1075), pronta para ser devolvida à chamada de origem.
+#### Conclusão do fluxo de inicialização no método getInstancia(). A instrução return instancia; na linha 24 é alcançada e o painel Variables confirma que a variável estática instancia agora referencia o objeto recém-criado (@1075), pronta para ser devolvida à chamada de origem
 
 <p align="center">
   <img src="000-Midia_e_Anexos/2026-08-06-20-02-51.png" alt="" width="100%">
