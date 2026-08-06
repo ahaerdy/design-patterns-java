@@ -112,7 +112,7 @@ Ao prosseguir o código (`Step Over - F8`), a variável local `lazy1` recebe o p
 #### 🟩 Variável `lazy1` apontando para a instância `@452`.
 
 <p align="center">
-  <img src="000-Midia_e_Anexos/2026-08-06-20-16-56.png" alt="" width="100%">
+  <img src="000-Midia_e_Anexos/2026-08-06-20-20-08.png" alt="" width="100%">
 </p>
 
 ### Passo 4: Segunda Chamada — `lazy2 = SingletonLazy.getInstancia()`
