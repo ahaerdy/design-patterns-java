@@ -63,8 +63,6 @@ public class SingletonLazyDebug {
 
 ```
 
----
-
 ## 🛠️ 3. Passo a Passo do Debugging no IntelliJ IDEA
 
 ### Passo 1: Configuração dos Breakpoints
@@ -107,16 +105,15 @@ Execute a classe `SingletonLazyDebug` em modo **Debug (Shift + F9)**. Use `Step 
   <img src="000-Midia_e_Anexos/2026-08-06-20-02-51.png" alt="" width="100%">
 </p>
 
----
-
 ### Passo 3: Atribuição e Retorno de `lazy1`
 
 Ao prosseguir o código (`Step Over - F8`), a variável local `lazy1` recebe o ponteiro do objeto recém-criado.
 
+#### 🟩 Variável `lazy1` apontando para a instância `@452`.
 
-*Figura 3: Variável `lazy1` apontando para a instância `@452`.*
-
----
+<p align="center">
+  <img src="000-Midia_e_Anexos/2026-08-06-20-16-56.png" alt="" width="100%">
+</p>
 
 ### Passo 4: Segunda Chamada — `lazy2 = SingletonLazy.getInstancia()`
 
