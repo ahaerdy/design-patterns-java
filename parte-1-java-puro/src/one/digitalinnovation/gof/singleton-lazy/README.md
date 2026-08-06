@@ -72,12 +72,12 @@ public class SingletonLazyDebug {
 Para acompanhar a criação do objeto e a verificação condicional, insira pontos de interrupção (*breakpoints*):
 
 * No arquivo `SingletonLazyDebug.java`: Nas chamadas de `SingletonLazy.getInstancia()`.
-* No arquivo `SingletonLazy.java`: Na linha `if (instancia == null)`.
 
 <p align="center">
   <img src="000-Midia_e_Anexos/2026-08-06-19-47-38.png" alt="" width="100%">
+  <p align="center">Figura 1: Marcação dos pontos de interrupção no código `SingletonLazyDebug.java`.</p>
 </p>
-*Figura 1: Marcação dos pontos de interrupção no código `SingletonLazyDebug.java`*
+
 
 ---
 
@@ -85,12 +85,26 @@ Para acompanhar a criação do objeto e a verificação condicional, insira pont
 
 Execute a classe `SingletonLazyDebug` em modo **Debug (Shift + F9)**. Use `Step Into (F7)` para entrar no método da classe base.
 
+<p align="center">
+  <img src="000-Midia_e_Anexos/2026-08-06-19-53-34.png" alt="" width="100%">
+  <p align="center">Figura 2: Inspeção do painel Variables. O atributo estático `instancia` possui valor inicial `null`.</p>
+</p>
 
-*Figura 2: Inspeção do painel Variables. O atributo estático `instancia` possui valor inicial `null`.*
+<p align="center">
+  <img src="000-Midia_e_Anexos/2026-08-06-19-55-51.png" alt="" width="480">
+  <p align="center">Figura 3: O bloco entra na linha `instancia = new SingletonLazy();`.</p>
+</p>
 
-1. A condição `instancia == null` é avaliada como `true`.
-2. O bloco entra na linha `instancia = new SingletonLazy();`.
-3. A JVM aloca o novo objeto na memória Heap (ex: endereço/ID `@452`).
+<p align="center">
+  <img src="000-Midia_e_Anexos/2026-08-06-19-57-19.png" alt="" width="480">
+  <p align="center">Figura 4: O construtor privado SingletonLazy() é executado. A pilha de chamadas no painel Debug exibe o método <init>:16 sendo executado após a validação condicional instancia == null na linha 22, alocando a nova referência (@1075) na memória Heap.</p>
+</p>
+
+<p align="center">
+  <img src="000-Midia_e_Anexos/2026-08-06-20-02-51.png" alt="" width="480">
+  <p align="center">Figura 5: Conclusão do fluxo de inicialização no método getInstancia(). A instrução return instancia; na linha 24 é alcançada e o painel Variables confirma que a variável estática instancia agora referencia o objeto recém-criado (@1075), pronta para ser devolvida à chamada de origem.</p>  
+
+</p>
 
 ---
 
