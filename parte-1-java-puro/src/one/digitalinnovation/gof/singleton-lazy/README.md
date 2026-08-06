@@ -109,7 +109,7 @@ Execute a classe `SingletonLazyDebug` em modo **Debug (Shift + F9)**. Use `Step 
 
 Ao prosseguir o código (`Step Over - F8`), a variável local `lazy1` recebe o ponteiro do objeto recém-criado.
 
-#### 🟩 Variável `lazy1` apontando para a instância `@452`.
+#### 🟩 Variável `lazy1` apontando para a instância `@1075`.
 
 <p align="center">
   <img src="000-Midia_e_Anexos/2026-08-06-20-20-08.png" alt="" width="100%">
@@ -119,23 +119,34 @@ Ao prosseguir o código (`Step Over - F8`), a variável local `lazy1` recebe o p
 
 Na chamada seguinte, a execução entra novamente em `getInstancia()`.
 
+#### 🟩 Avaliação do `if (instancia == null)`. Como `instancia` já contém `@1075`, a condição é `false`.
 
-*Figura 4: Avaliação do `if (instancia == null)`. Como `instancia` já contém `@452`, a condição é `false`.*
+<p align="center">
+  <img src="000-Midia_e_Anexos/2026-08-06-20-22-43.png" alt="" width="100%">
+</p>
 
-1. A condição `instancia == null` falha (`false`).
-2. A instrução `new SingletonLazy()` **é saltada**, evitando alocação duplicada na memória.
-3. O método retorna diretamente a referência pré-existente (`instancia`).
+#### 🟩 A instrução `new SingletonLazy()` **é saltada**, evitando alocação duplicada na memória.
 
----
+<p align="center">
+  <img src="000-Midia_e_Anexos/2026-08-06-20-24-23.png" alt="" width="100%">
+</p>
+
+#### 🟩 O método retorna diretamente a referência pré-existente (`instancia`). Inspecionando o painel **Variables** ao término da execução mostra endereços iguais para as duas variáveis.
+
+<p align="center">
+  <img src="000-Midia_e_Anexos/2026-08-06-20-25-29.png" alt="" width="480">
+</p>
+
 
 ### Passo 5: Validação da Identidade de Memória
 
 Inspecionando o painel **Variables** ao término da execução:
 
+#### 🟩 Comparação dos hashes no IntelliJ comprovando que `lazy1` e `lazy2` são idênticos.
 
-*Figura 5: Comparação dos hashes no IntelliJ comprovando que `lazy1` e `lazy2` são idênticos.*
-
----
+<p align="center">
+  <img src="000-Midia_e_Anexos/2026-08-06-20-28-43.png" alt="" width="480">
+</p>
 
 ## 📊 4. Matriz de Rastreamento de Estado
 
