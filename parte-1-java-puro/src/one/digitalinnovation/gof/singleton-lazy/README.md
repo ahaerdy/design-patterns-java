@@ -74,8 +74,10 @@ Para acompanhar a criação do objeto e a verificação condicional, insira pont
 * No arquivo `SingletonLazyDebug.java`: Nas chamadas de `SingletonLazy.getInstancia()`.
 * No arquivo `SingletonLazy.java`: Na linha `if (instancia == null)`.
 
-
-*Figura 1: Marcação dos pontos de interrupção nas linhas de controle de fluxo.*
+<p align="center">
+  <img src="000-Midia_e_Anexos/2026-08-06-19-47-38.png" alt="" width="100%">
+</p>
+*Figura 1: Marcação dos pontos de interrupção no código `SingletonLazyDebug.java`*
 
 ---
 
