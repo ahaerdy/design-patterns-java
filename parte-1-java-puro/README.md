@@ -117,6 +117,8 @@ public class SingletonLazy {
 
 **⚠️ Problema:** Se duas threads chamarem `getInstancia()` ao **mesmo tempo**, ambas podem passar pelo `if (instancia == null)` antes de qualquer uma criar o objeto — resultando em **duas instâncias**. Para aplicações simples (single-thread), funciona perfeitamente.
 
+## Verifique: [Laboratório de Debugging: Singleton Lazy](./src/one/digitalinnovation/gof/singletonlazy/README.md)
+
 ---
 
 #### Variação 2: `SingletonEager` — O Ansioso
