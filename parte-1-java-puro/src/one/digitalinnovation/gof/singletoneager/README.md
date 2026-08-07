@@ -76,8 +76,6 @@ import one.digitalinnovation.gof.SingletonEager;
  * 3. [DICA DE OURO] Coloque também um Breakpoint na linha da variável 'instancia' dentro da classe SingletonEager.
  * 4. Execute via Debug (Shift + F9).
  * 5. Observe no painel "Variables" que a atribuição estática ocorre imediatamente na CARGA da classe.
- *
- * @author Arthur
  */
 public class SingletonEagerDebug {
 
@@ -117,7 +115,11 @@ public class SingletonEagerDebug {
 
 ### 1. Ponto de Controle Anterior à Carga da Classe
 
-Ao iniciar a execução em modo Debug (`Shift + F9`), o programa pausa no primeiro breakpoint dentro do método `main`. Neste momento, a classe `SingletonEager` ainda não foi referenciada ou carregada pelo *ClassLoader* da JVM.
+#### 🟩 Ao iniciar a execução em modo Debug (`Shift + F9`), o programa pausa no primeiro breakpoint dentro do método `main`. Neste momento, a classe `SingletonEager` ainda não foi referenciada ou carregada pelo *ClassLoader* da JVM.
+
+<p align="center">
+  <img src="000-Midia_e_Anexos/2026-08-07-17-32-25.png" alt="" width="100%">
+</p>
 
 ---
 
