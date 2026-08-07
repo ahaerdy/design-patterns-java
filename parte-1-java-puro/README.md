@@ -143,6 +143,8 @@ public class SingletonEager {
 **✅ Vantagem:** É thread-safe por natureza — a JVM garante que a inicialização estática acontece uma única vez.  
 **⚠️ Desvantagem:** Consome memória **mesmo que nunca seja utilizado** durante a execução do programa.
 
+### Confira aqui passo a passo da execução: ▶️ [Laboratório de  Debugging - Singleton Eager](./src/one/digitalinnovation/gof/singletoneager/README.md)
+
 ---
 
 #### Variação 3: `SingletonLazyHolder` — O Melhor dos Dois Mundos ⭐
