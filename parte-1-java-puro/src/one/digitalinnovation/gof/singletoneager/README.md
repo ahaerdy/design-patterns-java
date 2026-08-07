@@ -118,14 +118,14 @@ public class SingletonEagerDebug {
 #### 🟩 Ao iniciar a execução em modo Debug (`Shift + F9`), o programa pausa no primeiro breakpoint dentro do método `main`. Neste momento, a classe `SingletonEager` ainda não foi referenciada ou carregada pelo *ClassLoader* da JVM.
 
 <p align="center">
-  <img src="000-Midia_e_Anexos/2026-08-07-17-32-25.png" alt="" width="100%">
+  <img src="000-Midia_e_Anexos/2026-08-07-17-35-14.png" alt="" width="100%">
 </p>
 
 ---
 
 ### 2. Primeiro Toque na Classe e Execução do Bloco Estático (`<clinit>`)
 
-Ao avançar com *Step Into* (F7) na chamada `SingletonEager.getInstancia()`, a JVM identifica a referência a um membro estático da classe.
+#### 🟩 Ao avançar com *Step Into* (F7) na chamada `SingletonEager.getInstancia()`, a JVM identifica a referência a um membro estático da classe.
 
 Antes de entrar no corpo do método `getInstancia()`, a JVM interrompe o fluxo normal para executar a inicialização estática:
 
@@ -133,19 +133,31 @@ Antes de entrar no corpo do método `getInstancia()`, a JVM interrompe o fluxo n
 2. Executa o construtor privado `SingletonEager()`, alocando o objeto na memória **Heap**.
 3. Atribui o objeto alocado (ex: `SingletonEager@1075`) ao membro estático `instancia`.
 
+<p align="center">
+  <img src="000-Midia_e_Anexos/2026-08-07-17-36-14.png" alt="" width="100%">
+</p>
+
 > **Nota de Inspeção:** Observe que ao entrar na linha `return instancia;`, o *inline hint* da IDE já exibe o objeto instanciado (ex: `instancia: SingletonEager@1075`). Isso confirma que a criação do objeto ocorreu na carga da classe, **antes** do retorno do método.
 
 ---
 
 ### 3. Segunda Chamada e Reutilização de Instância
 
-Na segunda chamada a `SingletonEager.getInstancia()`, como a classe já se encontra devidamente carregada e inicializada no ecossistema da JVM, a etapa de inicialização estática é ignorada. O método apenas retorna a referência existente guardada em memória.
+#### 🟩 Na segunda chamada a `SingletonEager.getInstancia()`, como a classe já se encontra devidamente carregada e inicializada no ecossistema da JVM, a etapa de inicialização estática é ignorada. O método apenas retorna a referência existente guardada em memória.
+
+<p align="center">
+  <img src="000-Midia_e_Anexos/2026-08-07-17-38-38.png" alt="" width="100%">
+</p>
 
 ---
 
 ### 4. Confirmação de Identidade no Console
 
-Ao final da execução, o console exibe o hash de memória nativo gerado pelo `toString()` padrão da JVM (formato `NomeDaClasse@HashCodeHexadecimal`).
+#### 🟩 Ao final da execução, o console exibe o hash de memória nativo gerado pelo `toString()` padrão da JVM (formato `NomeDaClasse@HashCodeHexadecimal`).
+
+<p align="center">
+  <img src="000-Midia_e_Anexos/2026-08-07-17-40-12.png" alt="" width="100%">
+</p>
 
 ---
 
