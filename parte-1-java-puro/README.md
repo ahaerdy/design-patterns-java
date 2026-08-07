@@ -138,7 +138,7 @@ public class SingletonEager {
 
 **Como funciona:**
 
-* `private static final SingletonEager instancia = new SingletonEager()` → A instância é criada **no momento em que a classe é inicializada pela JVM** (ao ocorrer o "primeiro toque" na classe), e não ao subir a aplicação. A palavra `final` garante que essa referência nunca poderá apontar para outro objeto após ser atribuída.
+* `private static final SingletonEager instancia = new SingletonEager()` → A criação do objeto ocorre **durante o procedimento de inicialização da classe pela JVM** (desencadeado pelo primeiro acesso a qualquer um de seus membros estáticos), momento em que o compilador executa a atribuição das variáveis estáticas e os blocos de inicialização (`<clinit>`). A palavra-chave `final` garante a imutabilidade da referência após essa atribuição.
 
 **✅ Vantagem:** É *thread-safe* por natureza — a especificação da JVM garante que a inicialização de membros estáticos é estritamente sincronizada e ocorre apenas uma única vez.
 
