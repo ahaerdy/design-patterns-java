@@ -140,7 +140,7 @@ public class SingletonEager {
 
 * `private static final SingletonEager instancia = new SingletonEager()` → A criação do objeto ocorre **durante o procedimento de inicialização da classe pela JVM** (desencadeado pelo primeiro acesso a qualquer um de seus membros estáticos), momento em que o compilador executa a atribuição das variáveis estáticas e os blocos de inicialização (`<clinit>`). A palavra-chave `final` garante a imutabilidade da referência após essa atribuição.
 
-**✅ Vantagem:** É *thread-safe* por natureza — a especificação da JVM garante que a inicialização de membros estáticos é estritamente sincronizada e ocorre apenas uma única vez.
+**✅ Vantagem:** É *thread-safe* por natureza — a especificação da JVM garante que a **inicialização de membros estáticos é estritamente sincronizada** e ocorre apenas uma única vez.
 
 **⚠️ Desvantagem:** Pode antecipar o consumo de memória caso a classe possua outros membros estáticos (métodos utilitários ou constantes) que sejam acessados sem a intenção explícita de obter a instância do Singleton.
 
