@@ -138,10 +138,11 @@ public class SingletonEager {
 
 **Como funciona:**
 
-- `private static final SingletonEager instancia = new SingletonEager()` → A instância é criada **no momento em que a JVM carrega a classe**, antes mesmo de qualquer código a chamar. A palavra `final` garante que essa referência nunca poderá apontar para outro objeto.
+* `private static final SingletonEager instancia = new SingletonEager()` → A instância é criada **no momento em que a classe é inicializada pela JVM** (ao ocorrer o "primeiro toque" na classe), e não ao subir a aplicação. A palavra `final` garante que essa referência nunca poderá apontar para outro objeto após ser atribuída.
 
-**✅ Vantagem:** É thread-safe por natureza — a JVM garante que a inicialização estática acontece uma única vez.  
-**⚠️ Desvantagem:** Consome memória **mesmo que nunca seja utilizado** durante a execução do programa.
+**✅ Vantagem:** É *thread-safe* por natureza — a especificação da JVM garante que a inicialização de membros estáticos é estritamente sincronizada e ocorre apenas uma única vez.
+
+**⚠️ Desvantagem:** Pode antecipar o consumo de memória caso a classe possua outros membros estáticos (métodos utilitários ou constantes) que sejam acessados sem a intenção explícita de obter a instância do Singleton.
 
 ### Confira aqui passo a passo da execução: ▶️ [Laboratório de  Debugging - Singleton Eager](./src/one/digitalinnovation/gof/singletoneager/README.md)
 
